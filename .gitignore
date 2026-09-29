@@ -1,0 +1,35 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# All Audio, Dataset, Samples, and Weights
+data/
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.mp4
+*.zip
+*.tar.gz
+*.npz
+*.db
+
+# Documentation and Competition Submission Folders
+docs/
+submit_aiml/
+Documentation_Prompt.md
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Editor & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store

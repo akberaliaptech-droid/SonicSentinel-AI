@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SonicSentinel AI // Enterprise Acoustic Intelligence Platform</title>
+  <meta name="description" content="SonicSentinel AI - Enterprise Acoustic Surveillance, Live Microphone Intelligence, 360° Radar DOA, Dual-Model Consensus Arbitration, and Tamper-Evident Forensic Dossiers.">
+  <meta name="theme-color" content="#070d19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SonicSentinel">
+  
+  <!-- Progressive Web App Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/svg+xml" href="/static/icons/icon-192.svg">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.svg">
+
+  <!-- Modern Tactical Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core Tactical & Mobile-First Styling -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- Top Cyber Defense Navigation Strip -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">
+          SONICSENTINEL <span class="cyan-accent">AI</span>
+          <span class="brand-badge">APTECH TECHWIZ 7</span>
+        </div>
+        <div class="brand-subtitle">Enterprise Acoustic Intelligence // 10 Mandatory Classes // Dual-Model Arbitration</div>
+      </div>
+    </div>
+
+    <!-- Live System Telemetry Status Bar -->
+    <div class="header-status-strip">
+      <!-- Live Microphone Status Badge (SRS 1.6 vii) -->
+      <div class="status-pill mic-pill" id="micHeaderPill">
+        <div class="pulse-dot" id="micHeaderDot" style="background-color: #ffd600; box-shadow: 0 0 8px #ffd600;"></div>
+        <span id="micHeaderText">MIC: AVAILABLE</span>
+      </div>
+
+      <!-- Real-Time Audio Level Readout -->
+      <div class="status-pill level-pill">
+        <span>VU: <b id="headerDecibelText" style="color: #00f3ff; font-family: var(--font-mono);">-inf dBFS</b></span>
+      </div>
+
+      <!-- WebSocket Telemetry Status -->
+      <div class="status-pill" id="wsStatusPill">
+        <div class="pulse-dot" id="wsStatusDot"></div>
+        <span id="wsStatusText">RADAR LIVE</span>
+      </div>
+
+      <!-- Role-Based Access Control Switcher (SRS 1.6 ii) -->
+      <div class="role-selector-wrap">
+        <label for="userRoleSelect" class="role-label">ROLE:</label>
+        <select id="userRoleSelect" class="role-dropdown">
+          <option value="OPERATOR">Security Operator</option>
+          <option value="ADMIN" selected>Administrator</option>
+          <option value="REVIEWER">Audio Reviewer</option>
+          <option value="USER">Normal User</option>
+        </select>
+      </div>
+
+      <!-- PWA Install App Button -->
+      <button class="btn-install-app" id="btnInstallApp" style="display: none;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span>INSTALL APP</span>
+      </button>
+
+      <!-- Modern Theme Switcher (Vector SVG Sun & Moon) -->
+      <button class="btn-theme-toggle" id="btnToggleTheme" title="Switch Theme (Light / Dark)" aria-label="Switch Theme">
+        <span class="theme-icon-sun" id="themeIconSun">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </span>
+        <span class="theme-icon-moon" id="themeIconMoon" style="display: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </span>
+        <span id="themeToggleText">Light</span>
+      </button>
+
+      <!-- Background Alert Toggle -->
+      <button class="btn-icon-subtle" id="btnToggleAlerts" title="Enable Background Native Push Alerts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile View Switcher Tabs (Visible on screens < 960px) -->
+  <nav class="mobile-tabs-bar" id="mobileTabsBar">
+    <button class="mobile-tab-btn active" data-target="view-radar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+      <span>Radar</span>
+    </button>
+    <button class="mobile-tab-btn" data-target="view-live-mic">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+      <span>Live Mic</span>
+    </button>
+    <button class="mobile-tab-btn" data-target="view-ai-models">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><circle cx="15.5" cy="15.5" r="1.5"></circle><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line></svg>
+      <span>AI Brain</span>
+    </button>
+    <button class="mobile-tab-btn" data-target="view-incidents">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+      <span>Incidents</span>
+    </button>
+    <button class="mobile-tab-btn" data-target="view-lab">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      <span>Lab/Rules</span>
+    </button>
+  </nav>
+
+  <!-- Main Three-Column Responsive Tactical Dashboard -->
+  <main class="dashboard-grid">
+
+    <!-- ==================== COLUMN 1: RADAR & LIVE MIC ==================== -->
+    <section class="column-left" id="view-radar">
+      
+      <!-- 360-Degree Acoustic Radar Direction Finder -->
+      <div class="tactical-card" id="radarCardWrapper">
+        <div class="card-header radar-card-header">
+          <div class="card-header-left">
+            <h2 class="card-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="2" x2="12" y2="12"></line>
+              </svg>
+              Acoustic Direction Finder (DOA)
+            </h2>
+            <span class="card-badge pulse-badge">GCC-PHAT 360°</span>
+          </div>
+          <div class="card-header-actions">
+            <button class="btn-radar-fullscreen" id="btnFullscreenRadar" title="Open Fullscreen Tactical Radar (Desktop & Mobile)" aria-label="Open Fullscreen Radar">
+              <svg class="icon-expand" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+              <span>Fullscreen</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="radar-container" id="normalRadarWrap">
+          <canvas id="radarCanvas"></canvas>
+          <div class="radar-overlay-crosshair"></div>
+        </div>
+
+        <div class="radar-telemetry-strip">
+          <div class="telemetry-item">
+            <span class="telemetry-label">Bearing</span>
+            <span class="telemetry-val" id="telBearing">--°</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Target Class</span>
+            <span class="telemetry-val" id="telCategory">STANDBY</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Confidence</span>
+            <span class="telemetry-val" id="telConfidence">0.0%</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">TDOA</span>
+            <span class="telemetry-val" id="telTdoa">0.00 ms</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Signal SNR</span>
+            <span class="telemetry-val" id="telSnr">-- dB</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label">Audio Quality</span>
+            <span class="telemetry-val badge-quality" id="telQuality">Good</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Microphone Streaming & Diagnostics Station (SRS 1.6 vi, vii, xii, xiii, xiv) -->
+      <div class="tactical-card" id="view-live-mic">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e676" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+            Live Microphone Intelligence & VU Meter
+          </h2>
+          <span class="card-badge" id="micStatusCardBadge" style="color: #00e676; border-color: #00e676;">HARDWARE READY</span>
+        </div>
+
+        <div class="mic-station-body">
+          <!-- Big Interactive Start / Pause Live Mic Button -->
+          <div class="mic-control-row">
+            <button class="btn-live-mic" id="btnToggleLiveMic">
+              <div class="mic-icon-pulse">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="23"></line>
+                  <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+              </div>
+              <div class="mic-btn-text">
+                <span class="mic-btn-title" id="micBtnTitle">START LIVE MONITORING</span>
+                <span class="mic-btn-sub" id="micBtnSub">Continuous 2.0s streaming & real-time tracing</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Live Audio VU Level Meter (dBFS Meter) -->
+          <div class="vu-meter-box">
+            <div class="vu-meter-labels">
+              <span>MIC INPUT LEVEL (VU)</span>
+              <span id="liveVuDecibels" style="color: #00f3ff; font-family: var(--font-mono); font-weight: 700;">-60.0 dBFS</span>
+            </div>
+            <div class="vu-meter-track">
+              <div class="vu-meter-fill" id="liveVuMeterFill" style="width: 0%;"></div>
+              <div class="vu-meter-peak" id="liveVuMeterPeak"></div>
+            </div>
+            <div class="vu-ticks">
+              <span>-60</span><span>-48</span><span>-36</span><span>-24</span><span>-12</span><span>-6</span><span>0 dB</span>
+            </div>
+          </div>
+
+          <!-- Real-Time Oscilloscope Waveform Canvas -->
+          <div class="live-oscilloscope-container">
+            <div class="oscilloscope-label">REAL-TIME OSCILLOSCOPE (44.1 kHz PCM)</div>
+            <canvas id="liveOscilloscopeCanvas" height="70"></canvas>
+          </div>
+
+          <!-- Live Speech Subtitles -->
+          <div class="live-subtitles-container" style="margin-top: 10px; padding: 10px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 6px;">
+            <div class="oscilloscope-label" style="color: #00f3ff; margin-bottom: 5px;">LIVE SPEECH TRANSCRIPT (SUBTITLES)</div>
+            <div id="liveSubtitlesText" style="min-height: 40px; font-family: var(--font-mono); font-size: 12px; color: #fff;">Awaiting speech...</div>
+          </div>
+
+          <!-- Live Diagnostics & Sensitivity Gate Slider -->
+          <div class="mic-diagnostics-grid">
+            <div class="diag-item">
+              <span class="diag-label">Microphone Status</span>
+              <span class="diag-val" id="diagMicStatus" style="color: #00e676;">Ready / Plugged</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-label">Surveillance State</span>
+              <span class="diag-val" id="diagStreamState">Idle (Tap Start)</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-label">Ambient Noise Floor</span>
+              <span class="diag-val" id="diagNoiseFloor">Calculating...</span>
+            </div>
+            <div class="diag-item">
+              <span class="diag-label">Sampling Stream</span>
+              <span class="diag-val">44.1 kHz Studio</span>
+            </div>
+            <div class="diag-item" style="grid-column: span 2;">
+              <span class="diag-label">Speech & Distress Recognizer (SRS Safety Phrases)</span>
+              <span class="diag-val" id="diagHeardSpeech" style="color: var(--accent-primary); font-size: 11px;">Listening for "Help me", "Emergency", Gunshot, etc...</span>
+            </div>
+          </div>
+
+          <!-- Sensitivity Noise Gate Slider -->
+          <div class="sensitivity-slider-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span class="telemetry-label">Sensitivity / Ambient Gate:</span>
+              <span class="telemetry-val" id="noiseGateValText" style="font-size: 11px;">Balanced (-38 dB)</span>
+            </div>
+            <input type="range" id="noiseGateSlider" min="1" max="100" value="50" class="tactical-slider">
+            <div style="display: flex; justify-content: space-between; font-size: 9.5px; color: var(--text-muted); margin-top: 2px;">
+              <span>High Sensitivity (Quiet Rooms)</span>
+              <span>Balanced</span>
+              <span>Low Sensitivity (Noisy Outdoors)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== COLUMN 2: DUAL AI & FORENSICS ==================== -->
+    <section class="column-center" id="view-ai-models">
+      
+      <!-- Dual-Model Consensus Arbitration (Aptech Technical Spec Core) -->
+      <div class="tactical-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Dual-Model Consensus Arbitration
+          </h2>
+          <span class="card-badge">INDEPENDENT INFERENCE</span>
+        </div>
+
+        <!-- Comparative Side-by-Side Model Cards with Top-3 Predictions -->
+        <div class="dual-model-grid">
+          <!-- MODEL A: Primary Deep Transfer CNN -->
+          <div class="model-box active-model">
+            <div class="model-box-header">
+              <span class="model-badge">MODEL A</span>
+              <span class="model-tech">PyTorch Deep CNN</span>
+              <span class="model-conf-badge" id="modelAConf">0.0%</span>
+            </div>
+            <div class="model-prediction" id="modelAPred">STANDBY</div>
+            <div class="model-conf-bar">
+              <div class="model-conf-fill" id="modelAFill" style="width: 0%;"></div>
+            </div>
+
+            <!-- Top-3 Ranked Predictions (SRS Requirement xxxiv) -->
+            <div class="top3-predictions-list" id="modelATop3">
+              <div class="top3-row"><span>1. Standby</span><span>0.0%</span></div>
+              <div class="top3-row"><span>2. Standby</span><span>0.0%</span></div>
+              <div class="top3-row"><span>3. Standby</span><span>0.0%</span></div>
+            </div>
+          </div>
+
+          <!-- MODEL B: Baseline GTM CNN -->
+          <div class="model-box">
+            <div class="model-box-header">
+              <span class="model-badge" style="color: #ff9100; border-color: #ff9100;">MODEL B</span>
+              <span class="model-tech">Standalone GTM CNN</span>
+              <span class="model-conf-badge" id="modelBConf" style="color: #ff9100;">0.0%</span>
+            </div>
+            <div class="model-prediction" id="modelBPred">STANDBY</div>
+            <div class="model-conf-bar">
+              <div class="model-conf-fill" id="modelBFill" style="width: 0%; background: linear-gradient(90deg, #ea580c, #ff9100);"></div>
+            </div>
+
+            <!-- Top-3 Ranked Predictions (SRS Requirement xxxiv) -->
+            <div class="top3-predictions-list" id="modelBTop3">
+              <div class="top3-row"><span>1. Standby</span><span>0.0%</span></div>
+              <div class="top3-row"><span>2. Standby</span><span>0.0%</span></div>
+              <div class="top3-row"><span>3. Standby</span><span>0.0%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consensus Arbitration Verdict Bar -->
+        <div class="arbitration-status-box">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="telemetry-label">Arbitration Verdict: </span>
+            <span class="arb-status-text arb-acceptable" id="arbStatusBadge">Awaiting Audio Stream</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div>
+              <span class="telemetry-label">Margin (|A - B|): </span>
+              <span class="telemetry-val" id="confMarginVal" style="font-size: 13px;">0.0000</span>
+            </div>
+            <div>
+              <span class="telemetry-label">Audio Quality: </span>
+              <span class="badge-quality" id="arbQualityBadge">Good</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manual Review Queue Alert Banner (SRS Step 17) -->
+        <div class="review-alert-banner" id="reviewAlertBanner">
+          <div class="review-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            MANUAL REVIEW QUEUE TRIGGERED
+          </div>
+          <p style="font-size: 11.5px; color: #f1f5f9; margin-top: 4px;" id="reviewReasonText">
+            Disagreement or borderline confidence requires operator verification.
+          </p>
+          <div class="review-actions">
+            <button class="btn-primary" id="btnReviewApprove" style="padding: 5px 12px; font-size: 11px;">
+              Approve Model A Decision
+            </button>
+            <button class="btn-secondary" id="btnReviewOverride" style="padding: 5px 12px; font-size: 11px;">
+              Override Classification
+            </button>
+          </div>
+        </div>
+
+        <!-- WOW FACTOR: Neural Core Matrix Terminal -->
+        <div class="ai-terminal-container" id="aiTerminalContainer">
+          <div id="aiTerminalFeed">
+            <div class="terminal-line">[SYS] Initializing Dual-Inference Engine...</div>
+            <div class="terminal-line">[SYS] Acoustic baseline established. Awaiting signals...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explainable AI (Mel Grad-CAM Heatmap) & Forensic Proof (SRS Step 6 & 1.6 xxi, xxii) -->
+      <div class="tactical-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="3" y1="9" x2="21" y2="9"></line>
+              <line x1="9" y1="21" x2="9" y2="9"></line>
+            </svg>
+            Explainable AI (XAI) & Tamper-Evident Forensics
+          </h2>
+          <span class="card-badge">GRAD-CAM EVIDENCE</span>
+        </div>
+
+        <div class="xai-preview-box" id="xaiPreviewBox">
+          <span style="color: var(--text-muted); font-size: 11.5px; font-family: var(--font-mono);">
+            Awaiting acoustic event to render Grad-CAM Mel-Spectrogram feature heatmap...
+          </span>
+        </div>
+
+        <div class="forensics-strip">
+          <div class="hash-box">
+            <div class="telemetry-label">Cryptographic SHA-256 Fingerprint:</div>
+            <div id="sha256Digest" class="hash-text">
+              e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+            </div>
+          </div>
+          <div>
+            <button class="btn-primary" id="btnDownloadPdf" style="display: none; padding: 7px 14px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Export Forensic PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Multi-Algorithm Benchmark & Model Selection (Aptech Tech Spec 1.5) -->
+      <div class="tactical-card" id="benchmarkCard">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            Multi-Algorithm Benchmark & Selection
+          </h2>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <button class="btn-secondary" id="btnRefreshBenchmark" style="padding: 4px 10px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Re-run</span>
+            </button>
+            <span class="card-badge" id="benchmarkBadge">70-15-15 SPLIT</span>
+          </div>
+        </div>
+
+        <!-- Compliance & Winner Banner -->
+        <div class="benchmark-summary-banner" id="benchmarkSummaryBanner">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+            <div>
+              <span class="telemetry-label" style="font-size: 9.5px;">AUTO-SELECTED BEST MODEL:</span>
+              <div class="benchmark-winner-title" id="bmWinnerTitle" style="color: #00f3ff; font-weight: 700; font-size: 13px;">Deep Audio CNN (YAMNet Backbone)</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="card-badge" style="color: #00e676; border-color: #00e676; font-size: 9.5px;" id="bmComplianceStatus">
+                TARGETS SATISFIED (&ge;85%)
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Algorithms Side-by-Side Comparison Grid -->
+        <div class="benchmark-models-grid" id="benchmarkModelsGrid">
+          <div class="bm-card active-winner" id="bmCard-Algorithm_1_Deep_CNN">
+            <div class="bm-header">
+              <span class="model-badge" style="color: #00f3ff; border-color: #00f3ff;">ALGORITHM 1</span>
+              <span class="bm-tag-winner">SELECTED WINNER</span>
+            </div>
+            <div class="bm-model-name">Deep Audio CNN (Grad-CAM)</div>
+            <div class="bm-metrics-table">
+              <div class="bm-metric-row"><span>Test Accuracy</span><b style="color: #00e676;" id="bmAcc1">87.5%</b></div>
+              <div class="bm-metric-row"><span>Critical Recall</span><b style="color: #00e676;" id="bmRec1">89.2%</b></div>
+              <div class="bm-metric-row"><span>Macro F1</span><b id="bmF1_1">0.865</b></div>
+              <div class="bm-metric-row"><span>Latency</span><b id="bmLat1">14 ms</b></div>
+              <div class="bm-metric-row"><span>Memory (RAM)</span><b id="bmMem1">9.5 MB</b></div>
+            </div>
+          </div>
+
+          <div class="bm-card" id="bmCard-Algorithm_2_CRNN">
+            <div class="bm-header">
+              <span class="model-badge" style="color: #ffd600; border-color: #ffd600;">ALGORITHM 2</span>
+              <span class="bm-tag-benchmarked">TEMPORAL</span>
+            </div>
+            <div class="bm-model-name">Audio CRNN (BiGRU + Attn)</div>
+            <div class="bm-metrics-table">
+              <div class="bm-metric-row"><span>Test Accuracy</span><b style="color: #00e676;" id="bmAcc2">85.8%</b></div>
+              <div class="bm-metric-row"><span>Critical Recall</span><b style="color: #00e676;" id="bmRec2">86.9%</b></div>
+              <div class="bm-metric-row"><span>Macro F1</span><b id="bmF1_2">0.852</b></div>
+              <div class="bm-metric-row"><span>Latency</span><b id="bmLat2">28 ms</b></div>
+              <div class="bm-metric-row"><span>Memory (RAM)</span><b id="bmMem2">12.3 MB</b></div>
+            </div>
+          </div>
+
+          <div class="bm-card" id="bmCard-Algorithm_3_ML_Ensemble">
+            <div class="bm-header">
+              <span class="model-badge" style="color: #00e5ff; border-color: #00e5ff;">ALGORITHM 3</span>
+              <span class="bm-tag-benchmarked">LIGHTWEIGHT</span>
+            </div>
+            <div class="bm-model-name">ML Ensemble (RF 69-D)</div>
+            <div class="bm-metrics-table">
+              <div class="bm-metric-row"><span>Test Accuracy</span><b style="color: #00e676;" id="bmAcc3">85.3%</b></div>
+              <div class="bm-metric-row"><span>Critical Recall</span><b style="color: #00e676;" id="bmRec3">85.6%</b></div>
+              <div class="bm-metric-row"><span>Macro F1</span><b id="bmF1_3">0.849</b></div>
+              <div class="bm-metric-row"><span>Latency</span><b id="bmLat3">4 ms</b></div>
+              <div class="bm-metric-row"><span>Memory (RAM)</span><b id="bmMem3">0.6 MB</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-muted); margin-top: 8px; text-align: center;" id="bmStatusFooter">
+          Strictly complies with Aptech World Tech Spec: Evaluated on 70-15-15 Split &ge; 85% Target Recall.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== COLUMN 3: TEST LAB & DOSSIER ==================== -->
+    <section class="column-right" id="view-lab">
+      
+      <!-- 10 Mandatory Acoustic Classes Simulator & File Upload Dropper -->
+      <div class="tactical-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Acoustic Signal Injection & 10 Mandatory Classes
+          </h2>
+          <span class="card-badge">APTECH SPEC</span>
+        </div>
+
+        <div class="simulator-panel">
+          <!-- Azimuth Simulator Slider -->
+          <div class="sim-slider-row">
+            <span class="telemetry-label" style="width: 90px;">Radar Azimuth:</span>
+            <input type="range" id="simAzimuthSlider" min="0" max="180" value="90" step="5" class="tactical-slider">
+            <span class="telemetry-val" id="simAzimuthVal" style="width: 44px; text-align: right;">90°</span>
+          </div>
+
+          <!-- EXACT 10 Mandatory Classes as required by TechWiz 7 SRS Page 4 -->
+          <div class="classes-quick-grid">
+            <button class="btn-class-sim btn-danger-sim" data-class="Gunshot">
+              <span>Gunshot</span> <span class="severity-pill sev-CRITICAL">CRITICAL</span>
+            </button>
+            <button class="btn-class-sim btn-danger-sim" data-class="Person Asking for Help">
+              <span>Person Asking for Help</span> <span class="severity-pill sev-CRITICAL">CRITICAL</span>
+            </button>
+            <button class="btn-class-sim" data-class="Glass Breaking">
+              <span>Glass Breaking</span> <span class="severity-pill sev-HIGH">HIGH</span>
+            </button>
+            <button class="btn-class-sim" data-class="Panic Scream">
+              <span>Panic Scream</span> <span class="severity-pill sev-HIGH">HIGH</span>
+            </button>
+            <button class="btn-class-sim" data-class="Aggression">
+              <span>Aggression</span> <span class="severity-pill sev-HIGH">HIGH</span>
+            </button>
+            <button class="btn-class-sim" data-class="Alarm or Siren">
+              <span>Alarm or Siren</span> <span class="severity-pill sev-MEDIUM">MEDIUM</span>
+            </button>
+            <button class="btn-class-sim" data-class="Vehicle Horn">
+              <span>Vehicle Horn</span> <span class="severity-pill sev-MEDIUM">MEDIUM</span>
+            </button>
+            <button class="btn-class-sim" data-class="Machinery Fault">
+              <span>Machinery Fault</span> <span class="severity-pill sev-MEDIUM">MEDIUM</span>
+            </button>
+            <button class="btn-class-sim" data-class="Animal Sound">
+              <span>Animal Sound</span> <span class="severity-pill sev-LOW">LOW</span>
+            </button>
+            <button class="btn-class-sim" data-class="Background Noise">
+              <span>Background Noise</span> <span class="severity-pill sev-NORMAL">NORMAL</span>
+            </button>
+          </div>
+
+          <!-- Audio File Drag & Drop (SRS 1.6 iv: WAV, MP3, FLAC, OGG, M4A) -->
+          <div class="upload-zone" id="audioDropZone" style="margin-top: 10px;">
+            <input type="file" id="audioFileInput" accept=".wav,.mp3,.flac,.ogg,.m4a" style="display: none;">
+            <p style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 2px;">
+              <b>Drop Audio File (.wav, .mp3, .flac, .ogg, .m4a)</b>
+            </p>
+            <span style="font-size: 10px; color: var(--text-muted);">or tap to browse local storage</span>
+          </div>
+
+          <!-- Anti-Cheat Physical Error Boundaries Verification -->
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <button class="btn-secondary" id="btnTestSilence" style="flex: 1; font-size: 10.5px;">
+              Test Silence Rejection
+            </button>
+            <button class="btn-secondary" id="btnTestClipping" style="flex: 1; font-size: 10.5px;">
+              Test Clipping Rejection
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-Time Forensic Incidents Dossier & CSV Export (SRS 1.6 lxx & Step 18) -->
+      <div class="tactical-card" id="view-incidents">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            Forensic Incidents Dossier
+          </h2>
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <a href="/api/v1/incidents/export-csv" class="btn-secondary" id="btnExportCsv" style="padding: 4px 10px; font-size: 11px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export CSV</span>
+            </a>
+            <span class="card-badge">LIVE AUDIT</span>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="tactical-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>UTC</th>
+                <th>Threat</th>
+                <th>Class</th>
+                <th>DOA</th>
+                <th>Conf</th>
+                <th>Quality</th>
+                <th>Dossier</th>
+              </tr>
+            </thead>
+            <tbody id="incidentsTableBody">
+              <!-- Dynamically populated via WebSocket / API -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Active Learning, Configurable Rules & Dataset Vault (SRS Step 1, 5, 16 & Requirement liii) -->
+      <div class="tactical-card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00f3ff" stroke-width="2">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            Continuous Learning & Alert Rules
+          </h2>
+          <span class="card-badge">3,000+ SAMPLES ENGINE</span>
+        </div>
+
+        <!-- Dynamic Category Provisioning -->
+        <div class="telemetry-label" style="margin-bottom: 4px;">1. Provision New Acoustic Category:</div>
+        <div class="form-input-group">
+          <input type="text" class="form-input" id="newCategoryInput" placeholder="Category Name (e.g. Drone_Propeller)" />
+          <button class="btn-primary" id="btnCreateCategory" style="white-space: nowrap;">
+            + Provision
+          </button>
+        </div>
+
+        <!-- User Sample Upload Directly into Any Category -->
+        <div class="telemetry-label" style="margin-top: 8px; margin-bottom: 4px;">2. Upload Audio Files to Category:</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <select id="uploadCategorySelect" class="form-input" style="flex: 1.2;">
+            <option value="">Select Target Category...</option>
+          </select>
+          <input type="file" id="sampleUploadInput" multiple accept=".wav,.mp3" style="display: none;" />
+          <button class="btn-secondary" id="btnTriggerSampleUpload" style="flex: 1; white-space: nowrap;">
+            Select WAVs...
+          </button>
+        </div>
+        <div id="sampleUploadSummary" style="font-family: var(--font-mono); font-size: 10px; color: var(--cyan-neon); margin-bottom: 8px; display: none;"></div>
+
+        <!-- 3,000+ Harvester & Data Augmentation Engine -->
+        <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px; margin-top: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span class="telemetry-label">3. Automated Dataset Expansion:</span>
+            <button class="btn-secondary" id="btnSyncCategories" style="padding: 2px 8px; font-size: 10px;">
+              Sync Disk
+            </button>
+          </div>
+          <button class="btn-primary" id="btnHarvestAugment" style="width: 100%; background: linear-gradient(135deg, #0284c7, #7c3aed); margin-bottom: 6px;">
+            HARVEST & AUGMENT TO 3,000+ FILES
+          </button>
+        </div>
+
+        <!-- Active Catalog with Real-Time File Counts -->
+        <div class="telemetry-label" style="margin-bottom: 6px;">Acoustic Catalog & Sample Counts:</div>
+        <div class="category-tags-list" id="categoryChipsList">
+          <!-- Dynamically populated with sample badges -->
+        </div>
+
+        <!-- Retrain & Fine-Tune Model -->
+        <button class="btn-primary" id="btnTriggerFineTune" style="width: 100%; margin-top: 6px;">
+          TRIGGER CONTINUOUS FINE-TUNING
+        </button>
+        <div id="fineTuneProgressText" style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 6px; text-align: center;">
+          Idle. Base layers frozen. Ready for warm-up cycle.
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- SOS Floating Action Button (App Experience) -->
+  <button id="btnSosPanic" class="fab-sos" title="Manual Emergency SOS">
+    SOS
+  </button>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer"></div>
+
+  <!-- DEDICATED FULLSCREEN TACTICAL RADAR OVERLAY (DESKTOP & MOBILE) -->
+  <div id="radarFullscreenModal" class="radar-fullscreen-overlay" style="display: none;">
+    <div class="fs-radar-backdrop" id="fsRadarBackdrop"></div>
+    <div class="fs-radar-panel">
+      <!-- Fullscreen Top Tactical HUD -->
+      <div class="fs-radar-hud-header">
+        <div class="fs-hud-brand">
+          <div class="pulse-dot"></div>
+          <span class="fs-hud-title">TACTICAL ACOUSTIC RADAR // GCC-PHAT 360° ARRAY</span>
+          <span class="card-badge">LIVE SURVEILLANCE</span>
+        </div>
+        <div class="fs-hud-controls">
+          <span class="fs-esc-hint">Press <b>ESC</b> or Tap Exit</span>
+          <button class="btn-fs-exit" id="btnCloseFullscreenRadar" aria-label="Exit Fullscreen">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span>Exit Fullscreen</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Centered Fullscreen Canvas Viewport -->
+      <div class="fs-radar-canvas-wrap" id="fsRadarCanvasWrap"></div>
+
+      <!-- Fullscreen Bottom Telemetry HUD Bar -->
+      <div class="fs-radar-telemetry-hud" id="fsRadarTelemetryHud">
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">AZIMUTH BEARING</span>
+          <span class="fs-tel-val" id="fsTelBearing">--°</span>
+        </div>
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">TARGET CLASS</span>
+          <span class="fs-tel-val" id="fsTelCategory">STANDBY</span>
+        </div>
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">CONFIDENCE</span>
+          <span class="fs-tel-val" id="fsTelConfidence">0.0%</span>
+        </div>
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">TDOA LATENCY</span>
+          <span class="fs-tel-val" id="fsTelTdoa">0.00 ms</span>
+        </div>
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">SIGNAL SNR</span>
+          <span class="fs-tel-val" id="fsTelSnr">-- dB</span>
+        </div>
+        <div class="fs-telemetry-box">
+          <span class="fs-tel-label">AUDIO QUALITY</span>
+          <span class="badge-quality Good" id="fsTelQuality">Good</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/static/js/radar.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

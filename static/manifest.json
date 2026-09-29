@@ -1,0 +1,38 @@
+{
+  "name": "SonicSentinel AI - Acoustic Intelligence Platform",
+  "short_name": "SonicSentinel",
+  "description": "Enterprise Acoustic Intelligence, GCC-PHAT 360° Tactical Radar, Dual-Model Consensus Arbitration, and Live Microphone Threat Detection.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#070d19",
+  "theme_color": "#070d19",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/static/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["security", "utilities", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Live Radar",
+      "url": "/#radar",
+      "description": "Open 360° Direction Finder Radar"
+    },
+    {
+      "name": "Live Mic Stream",
+      "url": "/#live-mic",
+      "description": "Start Live Microphone Surveillance"
+    }
+  ]
+}

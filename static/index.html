@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonicSentinel AI - Next Gen Acoustic Intelligence</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="SonicSentinel AI transforms raw audio into crystal-clear insights using advanced Dual-Model Artificial Intelligence and Real-Time Acoustic Radar.">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/css/home.css">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body class="dark-theme">
+
+    <!-- Ambient Background Effects -->
+    <div class="ambient-bg">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Premium Navigation -->
+    <nav class="premium-nav" id="mainNav">
+        <div class="nav-container">
+            <div class="logo group">
+                <div class="logo-icon-wrap">
+                    <i class="ri-radar-line"></i>
+                </div>
+                <span class="logo-text">SonicSentinel<span class="accent-dot">.</span>AI</span>
+            </div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#overview" class="nav-link active">Platform</a></li>
+                <li><a href="#features" class="nav-link">Capabilities</a></li>
+                <li><a href="#sounds" class="nav-link">Detection</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="/dashboard" class="nav-link" style="color: var(--primary); font-weight: 600;"><i class="ri-dashboard-line"></i> Live Dashboard</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="/dashboard" class="btn-ghost" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;"><i class="ri-dashboard-line"></i> Console</a>
+                <button class="btn-premium" onclick="openLoginModal()" id="getStartedBtn">
+                    <span>Sign In</span>
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+                <button class="btn-ghost text-danger" onclick="handleLogout()" id="logoutNavBtn" style="display: none;">Sign Out</button>
+            </div>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Landing View -->
+    <main id="landingView">
+        
+        <!-- Hero Section -->
+        <section id="overview" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="pill-badge reveal-up">
+                        <span class="pulse-dot"></span>
+                        V2.0 Enterprise Architecture Live
+                    </div>
+                    
+                    <h1 class="hero-title reveal-up delay-1">
+                        Acoustic Intelligence, <br>
+                        <span class="text-gradient">Engineered for Security.</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle reveal-up delay-2">
+                        Deploy our Dual-Independent Inference Engine to instantly classify threats, locate sound origins, and generate forensic evidence with zero compromise.
+                    </p>
+                    
+                    <div class="hero-cta reveal-up delay-3">
+                        <a href="#architecture" class="btn-premium large">
+                            <span>Explore Architecture</span>
+                            <i class="ri-rocket-line"></i>
+                        </a>
+                        <a href="#sounds" class="btn-outline large">
+                            <i class="ri-play-circle-line"></i>
+                            <span>View Capabilities</span>
+                        </a>
+                    </div>
+                    
+                    <div class="trust-indicators reveal-up delay-4">
+                        <p>POWERED BY INDUSTRY STANDARDS</p>
+                        <div class="brands">
+                            <span><i class="ri-ubuntu-line"></i> PyTorch</span>
+                            <span><i class="ri-database-2-line"></i> FastAPI</span>
+                            <span><i class="ri-shield-check-line"></i> GCC-PHAT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal-scale delay-2">
+                    <div class="glass-dashboard-mockup">
+                        <div class="mockup-header">
+                            <div class="dots"><span></span><span></span><span></span></div>
+                            <div class="title">Live Acoustic Radar</div>
+                        </div>
+                        <div class="mockup-body">
+                            <div class="radar-circle">
+                                <div class="radar-sweep"></div>
+                                <div class="target-blip critical" style="top: 20%; left: 70%;">
+                                    <div class="ping"></div>
+                                </div>
+                                <div class="target-blip warning" style="top: 60%; left: 30%;">
+                                    <div class="ping"></div>
+                                </div>
+                            </div>
+                            <div class="live-stats">
+                                <div class="stat-row">
+                                    <span class="label">Confidence</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 96.5%;"></div></div>
+                                    <span class="value">96.5%</span>
+                                </div>
+                                <div class="stat-row">
+                                    <span class="label">Azimuth</span>
+                                    <span class="value text-gradient">112.4°</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features" class="section-padding dark-section">
+            <div class="section-container">
+                <div class="section-header reveal-up">
+                    <h2 class="section-title">Enterprise-Grade Capabilities</h2>
+                    <p class="section-desc">Designed for critical infrastructure and autonomous threat detection.</p>
+                </div>
+                
+                <div class="bento-grid">
+                    <!-- Feature 1 -->
+                    <div class="bento-card col-span-2 glass-panel reveal-up">
+                        <div class="bento-content">
+                            <div class="icon-box primary"><i class="ri-brain-line"></i></div>
+                            <h3>Dual-Model Arbitration</h3>
+                            <p>Our system runs two isolated AI brains concurrently (Transfer CNN & GTM Baseline). They must reach a strict mathematical consensus before classifying an event, eliminating false positives.</p>
+                        </div>
+                        <div class="bento-visual tech-bg"></div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bento-card glass-panel reveal-up delay-1">
+                        <div class="bento-content">
+                            <div class="icon-box warning"><i class="ri-radar-line"></i></div>
+                            <h3>GCC-PHAT Radar</h3>
+                            <p>Sub-millisecond spatial tracking determines the exact Direction of Arrival (DOA).</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bento-card glass-panel reveal-up delay-2">
+                        <div class="bento-content">
+                            <div class="icon-box danger"><i class="ri-file-shield-2-line"></i></div>
+                            <h3>Forensic Reporting</h3>
+                            <p>Automated PDF generation with Grad-CAM heatmaps for chain-of-custody evidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supported Sounds Scroller -->
+        <section id="sounds" class="section-padding">
+            <div class="section-container">
+                <div class="section-header text-center reveal-up">
+                    <h2 class="section-title">Acoustic Threat Taxonomy</h2>
+                    <p class="section-desc">Real-time classification across 10 mandatory critical categories.</p>
+                </div>
+                
+                <div class="sound-grid reveal-up delay-1">
+                    <div class="sound-card critical">
+                        <i class="ri-crosshair-2-line"></i>
+                        <h4>Gunshot</h4>
+                        <span class="severity">Critical</span>
+                    </div>
+                    <div class="sound-card critical">
+                        <i class="ri-lifebuoy-line"></i>
+                        <h4>Asking for Help</h4>
+                        <span class="severity">Critical</span>
+                    </div>
+                    <div class="sound-card high">
+                        <i class="ri-emotion-sad-line"></i>
+                        <h4>Panic Scream</h4>
+                        <span class="severity">High</span>
+                    </div>
+                    <div class="sound-card high">
+                        <i class="ri-sword-line"></i>
+                        <h4>Aggression</h4>
+                        <span class="severity">High</span>
+                    </div>
+                    <div class="sound-card high">
+                        <i class="ri-skip-forward-mini-line"></i>
+                        <h4>Glass Breaking</h4>
+                        <span class="severity">High</span>
+                    </div>
+                    <div class="sound-card medium">
+                        <i class="ri-alarm-warning-line"></i>
+                        <h4>Alarm / Siren</h4>
+                        <span class="severity">Medium</span>
+                    </div>
+                    <div class="sound-card medium">
+                        <i class="ri-settings-2-line"></i>
+                        <h4>Machinery Fault</h4>
+                        <span class="severity">Medium</span>
+                    </div>
+                    <div class="sound-card medium">
+                        <i class="ri-car-line"></i>
+                        <h4>Vehicle Horn</h4>
+                        <span class="severity">Medium</span>
+                    </div>
+                    <div class="sound-card low">
+                        <i class="ri-bear-smile-line"></i>
+                        <h4>Animal Sound</h4>
+                        <span class="severity">Low</span>
+                    </div>
+                    <div class="sound-card normal">
+                        <i class="ri-volume-mute-line"></i>
+                        <h4>Background Noise</h4>
+                        <span class="severity">Normal</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Pipeline Section -->
+        <section id="architecture" class="section-padding dark-section">
+            <div class="section-container">
+                <div class="section-header reveal-up text-center">
+                    <h2 class="section-title">How SonicSentinel Works</h2>
+                    <p class="section-desc">A seamless, autonomous pipeline from raw acoustic signal to actionable intelligence.</p>
+                </div>
+
+                <div class="commercial-pipeline reveal-up delay-1">
+                    <div class="pipeline-line">
+                        <div class="animated-dot"></div>
+                    </div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon glass-panel"><i class="ri-mic-2-line"></i></div>
+                        <div class="step-content">
+                            <h4>1. Signal Capture</h4>
+                            <p>Raw stereo audio is ingested from microphone arrays and instantly validated for quality.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon glass-panel"><i class="ri-cpu-line"></i></div>
+                        <div class="step-content">
+                            <h4>2. AI Processing</h4>
+                            <p>GCC-PHAT Radar tracks spatial origin while Dual-Model AI analyzes acoustic signatures.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-icon glass-panel"><i class="ri-scales-3-line"></i></div>
+                        <div class="step-content">
+                            <h4>3. Arbitration</h4>
+                            <p>A strict mathematical consensus is reached between baseline and transfer-learning models.</p>
+                        </div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-icon glass-panel"><i class="ri-dashboard-3-line"></i></div>
+                        <div class="step-content">
+                            <h4>4. Action</h4>
+                            <p>Live telemetry is broadcasted and secure forensic PDFs are generated for evidence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Premium Login Modal -->
+    <div class="modal-backdrop" id="loginModal">
+        <div class="premium-modal glass-panel">
+            <button class="modal-close" onclick="closeLoginModal()"><i class="ri-close-line"></i></button>
+            <div class="modal-content-wrap">
+                <div class="modal-icon"><i class="ri-fingerprint-line"></i></div>
+                <h2 class="modal-title">Authenticate</h2>
+                <p class="modal-subtitle">Secure access to SonicSentinel AI</p>
+                
+                <form id="loginForm" class="premium-form" onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <i class="ri-user-line"></i>
+                        <input type="text" id="username" placeholder="Operator ID (admin / user)" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="ri-lock-password-line"></i>
+                        <input type="password" id="password" placeholder="Passcode (admin123 / user123)" required>
+                    </div>
+                    <button type="submit" class="btn-premium w-full">
+                        <span>Initialize Session</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/home.js"></script>
+    <script>
+        // Mermaid Initialization for Dark Theme
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#1e293b',
+                primaryTextColor: '#f8fafc',
+                primaryBorderColor: '#38bdf8',
+                lineColor: '#64748b',
+                secondaryColor: '#0f172a',
+                tertiaryColor: '#0f172a'
+            },
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Intersection Observer for Scroll Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-up, .reveal-scale').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('mainNav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.3"/>
+      <stop offset="70%" stop-color="#00f3ff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#070d19" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cyberBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#00e676"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="192" height="192" rx="36" fill="#070d19"/>
+  <rect width="184" height="184" x="4" y="4" rx="32" fill="none" stroke="url(#cyberBorder)" stroke-width="2.5" stroke-opacity="0.8"/>
+
+  <!-- Radar Grid Circles -->
+  <circle cx="96" cy="96" r="72" fill="url(#radarGlow)" stroke="#00f3ff" stroke-width="1.2" stroke-opacity="0.3"/>
+  <circle cx="96" cy="96" r="50" fill="none" stroke="#00f3ff" stroke-width="1.2" stroke-opacity="0.45" stroke-dasharray="3,3"/>
+  <circle cx="96" cy="96" r="28" fill="none" stroke="#00f3ff" stroke-width="1.5" stroke-opacity="0.6"/>
+
+  <!-- Crosshairs -->
+  <line x1="96" y1="18" x2="96" y2="174" stroke="#00f3ff" stroke-width="1" stroke-opacity="0.35"/>
+  <line x1="18" y1="96" x2="174" y2="96" stroke="#00f3ff" stroke-width="1" stroke-opacity="0.35"/>
+
+  <!-- Radar Sweep Cone -->
+  <path d="M 96 96 L 146 46 A 72 72 0 0 0 96 24 Z" fill="#00f3ff" fill-opacity="0.18"/>
+
+  <!-- Sound Waveform Nodes -->
+  <path d="M 64 96 L 76 80 L 88 114 L 96 68 L 106 122 L 118 84 L 128 96" fill="none" stroke="#00e676" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Central Sentinel Node & Blip -->
+  <circle cx="96" cy="96" r="5" fill="#00f3ff"/>
+  <circle cx="128" cy="64" r="4.5" fill="#ff1744"/>
+  <circle cx="128" cy="64" r="9" fill="none" stroke="#ff1744" stroke-width="1.5" stroke-opacity="0.8"/>
+</svg>
