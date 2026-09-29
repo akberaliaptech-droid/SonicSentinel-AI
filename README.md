@@ -11,7 +11,7 @@ The platform integrates dual-independent neural classification architectures, Ge
 
 ---
 
-## 🏛️ System Architecture
+##  System Architecture
 
 ```
                                   +---------------------------------------+
@@ -84,7 +84,7 @@ The platform integrates dual-independent neural classification architectures, Ge
 
 ---
 
-## 🔬 Core Module Specifications
+##  Core Module Specifications
 
 ### 1. Acoustic Direction Finder (`src/audio_processing/doa.py`)
 - Reads dual-channel stereo buffers (44.1 kHz, baseline microphone spacing $d = 0.10$ m).
@@ -138,7 +138,7 @@ The platform integrates dual-independent neural classification architectures, Ge
 
 ---
 
-## 🏷️ 10 Mandatory Acoustic Classes
+##  10 Mandatory Acoustic Classes
 
 | Index | Category Name | Threat Severity | Description |
 |:---:|:---|:---:|:---|
@@ -155,7 +155,7 @@ The platform integrates dual-independent neural classification architectures, Ge
 
 ---
 
-## 🚀 Quick Start & Installation
+##  Quick Start & Installation
 
 ### 1. Requirements
 - Python 3.10+
@@ -181,7 +181,7 @@ Open your browser at **`http://127.0.0.1:8000`** to access the Cyber-Security Ac
 
 ---
 
-## 📡 REST API Reference
+##  REST API Reference
 
 | Method | Endpoint | Description |
 |:---|:---|:---|
